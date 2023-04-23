@@ -4,9 +4,7 @@ img {
 }
 
 button {
-  display: block;
   padding: 5px 10px;
-  margin: 0 20px 0 auto;
   cursor: pointer;
   background-color: #fff;
   color: royalblue;
@@ -28,7 +26,6 @@ button {
 main {
   padding: 20px;
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
   align-items: flex-start;
   gap: 20px;
@@ -39,6 +36,7 @@ main {
 }
 
 #save,
+#delete,
 #reset {
   float: right;
   margin: 10px 5px;

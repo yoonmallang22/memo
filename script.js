@@ -48,7 +48,6 @@ function render() {
     const memo = document.createElement("article");
     const saveContent = document.createElement("div");
     const saveTime = document.createElement("p");
-    const deleteMemoBtn = document.createElement("button");
 
     memo.setAttribute("class", allMemo[i - 1].len);
     memo.setAttribute("onclick", "modify()");
@@ -56,44 +55,25 @@ function render() {
     saveContent.setAttribute("class", "content");
     saveTime.textContent = allMemo[i - 1].time.slice(0, -3);
     saveTime.setAttribute("class", "time");
-    deleteMemoBtn.textContent = "삭제";
-    deleteMemoBtn.setAttribute("class", allMemo[i - 1].len);
-    deleteMemoBtn.setAttribute("onclick", "remove()");
 
     display.appendChild(memo);
     memo.appendChild(saveTime);
     memo.appendChild(saveContent);
-    display.appendChild(deleteMemoBtn);
   }
 }
 
-function remove() {
-  // 없으면 undefined
-  const idx = allMemo.find((item) => event.target.classList.contains(item.len));
-
-  if (idx) {
-    if (confirm("삭제하시겠습니까?")) {
-      allMemo.splice(
-        allMemo.findIndex((item) => item.len == idx.len),
-        1
-      );
-    }
-  }
-
-  localStorage.setItem("allMemo", JSON.stringify(allMemo));
-
-  render();
-}
-
-// 글 선택해서 수정 가능하게
+// 선택한 글 수정하기
 function modify() {
   document.querySelector("#display").addEventListener("click", (event) => {
     // console.log(event.target);
 
     // 선택한 글 불러오기
-    editor.setHTML(event.target.querySelector(".content").innerHTML);
+    if (allMemo !== []) {
+      editor.setHTML(event.target.querySelector(".content").innerHTML);
+    }
 
     // 선택한 글 배경색 주기
+    // 수정 필요: 선택한 것만 색상 바뀌게
     document.querySelectorAll("article").forEach((item) => (item.style.background = "none"));
     event.target.style.background = "#fbe49b";
     document.querySelector("#display").style.background = "none";
@@ -108,6 +88,23 @@ function modify() {
       );
     }
   });
+}
+
+// 선택한 글 삭제하기
+document.getElementById("delete").addEventListener("click", remove);
+
+function remove() {
+  if (confirm("삭제하시겠습니까?")) {
+    modify();
+  }
+
+  localStorage.setItem("allMemo", JSON.stringify(allMemo));
+
+  render();
+
+  // 삭제 버튼 누를 때마다 +1
+  // 추가한 글 len 겹치지 않게 하기 위해
+  num++;
 }
 
 // 에디터 초기화
