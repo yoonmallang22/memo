@@ -1,0 +1,71 @@
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+button {
+  display: block;
+  padding: 5px 10px;
+  margin: 0 20px 0 auto;
+  cursor: pointer;
+  background-color: #fff;
+  color: royalblue;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+main {
+  padding: 20px;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+#edit {
+  flex-shrink: 0;
+}
+
+#save,
+#reset {
+  float: right;
+  margin: 10px 5px;
+}
+
+#display {
+  width: 400px;
+  height: 90vh;
+  overflow: auto;
+  flex-shrink: 0;
+}
+
+article {
+  margin: 10px 20px 10px 0;
+  padding: 10px 20px;
+  border-radius: 3px;
+}
+
+article:hover {
+  background-color: #fbe49b;
+  transition: 0.2s;
+}
+
+article .time {
+  text-align: center;
+}
+article .time,
+.content {
+  pointer-events: none;
+}
