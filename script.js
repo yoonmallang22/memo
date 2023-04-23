@@ -94,8 +94,7 @@ function modify() {
     editor.setHTML(event.target.querySelector(".content").innerHTML);
 
     // 선택한 글 배경색 주기
-    // 수정 필요: 선택한 것만 색상 바뀌게
-    document.querySelector("article").style.background = "none";
+    document.querySelectorAll("article").forEach((item) => (item.style.background = "none"));
     event.target.style.background = "#fbe49b";
     document.querySelector("#display").style.background = "none";
 
