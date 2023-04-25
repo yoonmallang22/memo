@@ -49,7 +49,7 @@ function render() {
     const saveContent = document.createElement("div");
     const saveTime = document.createElement("p");
 
-    memo.setAttribute("class", allMemo[i - 1].len);
+    memo.setAttribute("id", allMemo[i - 1].len);
     memo.setAttribute("onclick", "modify()");
     saveContent.innerHTML = allMemo[i - 1].content;
     saveContent.setAttribute("class", "content");
@@ -73,12 +73,11 @@ function modify() {
     }
 
     // 선택한 글 배경색 주기
-    // 수정 필요: 선택한 것만 색상 바뀌게
     document.querySelectorAll("article").forEach((item) => (item.style.background = "none"));
     event.target.style.background = "#fbe49b";
     document.querySelector("#display").style.background = "none";
 
-    const idx = allMemo.find((item) => event.target.classList.contains(item.len));
+    const idx = allMemo.find((item) => item.len == event.target.id);
 
     // 삭제하고 saveNote()로 추가해서 위로 올라가게
     if (idx) {
